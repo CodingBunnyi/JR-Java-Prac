@@ -3,9 +3,9 @@ package com.jiangren13.demo13.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
-
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -13,4 +13,15 @@ import org.hibernate.annotations.Type;
 @Table(name = "student")
 
 public class Student {
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    private UUID id;
+
+    @Column(name = "first_name", unique = false, nullable = false)
+    private String firstName;
+
+    @Column(name = "encrypted_password", nullable = false)
+    private String encryptedPassword;
+}
 
